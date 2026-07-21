@@ -68,7 +68,7 @@ Pour cela, il se va de le representer par deux facteurs :
 Pour permettre une simulation qui montre différentes conclusions, l'utilisateur du simulateur pourra alors choisir au début différentes fréquences et taux de gravité, et plus important, choisir la catastrophe de son choix. <br>
 L'utilisateur pourra alors apres différentes simulations comparer les différents scénarios entre eux.  
 
-## 4. Conclusion de la simulation
+## 4. Conclusion de la simulation :
 
 On finira par afficher les resultats avec :
 - Perte moyenne
@@ -78,3 +78,12 @@ On finira par afficher les resultats avec :
 - Probabilité de ruine
 - Capital recommandé
 
+## 5. Objectif réel de ce projet :
+
+Au-delà de la réalisation d'un simple simulateur, ce projet a pour objectif de développer une véritable démarche de modélisation scientifique appliquée à la gestion quantitative des risques.
+
+L'ambition est de partir d'une problématique concrète : "comment le changement climatique influence-t-il le capital de solvabilité d'un assureur ?" puis de construire un modèle probabiliste capable d'y répondre à l'aide de simulations Monte-Carlo.
+
+À travers ce projet, je souhaite démontrer ma capacité à concevoir un modèle mathématique cohérent, simuler des phénomènes aléatoires complexes, analyser statistiquement les résultats obtenus et interpréter les principales mesures de risque utilisées en actuariat, telles que la Value at Risk (VaR), l'Expected Shortfall ou encore la probabilité de ruine.
+
+Le projet a également pour objectif de mettre en pratique plusieurs compétences complémentaires : probabilités, statistiques, programmation scientifique en Python, visualisation de données et développement logiciel. L'ensemble est conçu comme un projet de recherche appliquée, où chaque choix de modélisation est justifié et confronté à différents scénarios climatiques.
