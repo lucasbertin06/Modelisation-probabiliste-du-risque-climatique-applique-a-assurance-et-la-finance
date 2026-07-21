@@ -68,4 +68,13 @@ Pour cela, il se va de le representer par deux facteurs :
 Pour permettre une simulation qui montre différentes conclusions, l'utilisateur du simulateur pourra alors choisir au début différentes fréquences et taux de gravité, et plus important, choisir la catastrophe de son choix. <br>
 L'utilisateur pourra alors apres différentes simulations comparer les différents scénarios entre eux.  
 
+## 4. Conclusion de la simulation
+
+On finira par afficher les resultats avec :
+- Perte moyenne
+- Variance
+- VaR 99 %
+- Expected Shortfall
+- Probabilité de ruine
+- Capital recommandé
 
