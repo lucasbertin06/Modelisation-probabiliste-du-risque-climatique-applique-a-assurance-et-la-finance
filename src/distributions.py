@@ -12,7 +12,7 @@ def sim_events(landa) :
     k = 0
     
     while True:
-        p = poisson(k, lam)
+        p = poisson(k, landa)
         cumul += p
         
         if u <= cumul:
@@ -22,7 +22,12 @@ def sim_events(landa) :
 
 # now, if we use a range of a certain number and do print(sim_events(landa)) in the range, we will have a "number" of answers to which the avg will be landa (the purpose of itself)
 
-def lognormal()
-
-def cost_sim(mu, sigma) :
-     
+def lognormal(mu, sigma):
+    """Draws a cost according to a log-normal distribution (always positive, skewed,
+    can simulate an occasionally very large loss)."""
+    return random.lognormvariate(mu, sigma)
+ 
+ 
+def cost_sim(mu, sigma):
+    """simulate the cost of a sinister"""
+    return lognormal(mu, sigma)

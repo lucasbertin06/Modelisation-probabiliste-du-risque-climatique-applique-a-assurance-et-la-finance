@@ -15,3 +15,5 @@ STORM = {
     "frequence" = 1,
     "avg cost" = 50000
 }
+
+HAZARDS = [FLOOD, FIRE, STORM]
