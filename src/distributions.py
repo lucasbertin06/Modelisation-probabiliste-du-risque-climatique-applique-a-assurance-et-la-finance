@@ -29,5 +29,4 @@ def lognormal(mu, sigma):
  
  
 def cost_sim(mu, sigma):
-    """simulate the cost of a sinister"""
-    return lognormal(mu, sigma)
+    return lognormal(mu, sigma) # simulate the cost of a sinister

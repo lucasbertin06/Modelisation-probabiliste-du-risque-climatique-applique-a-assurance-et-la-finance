@@ -20,3 +20,7 @@ STORM = {
 }
 
 HAZARDS = [FLOOD, FIRE, STORM]
+
+# frequence = avg numbers of events per year = lambda in Poisson law
+# avg cost = avg cost of one event = use of lognormal distrib
+# sigma = volatility of the cost (high sigma = variable cost +++)
