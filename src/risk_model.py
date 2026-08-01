@@ -25,4 +25,9 @@ def total_loss(risk) :
     return total
 
 def total_annual_loss(risks) : # we sum the cost of all hazards
-    sum(total_annual_loss(for risk in risks)) # risks would here be HAZARDS from climat_risk.py 
+    total = 0
+
+    for risk in risks : # risks would here be HAZARDS from climat_risk.py 
+        total += total_loss(risk)
+
+    return total 
