@@ -23,10 +23,12 @@ def sim_events(landa) :
 # now, if we use a range of a certain number and do print(sim_events(landa)) in the range, we will have a "number" of answers to which the avg will be landa (the purpose of itself)
 
 def lognormal(mu, sigma):
-    """Draws a cost according to a log-normal distribution (always positive, skewed,
-    can simulate an occasionally very large loss)."""
+    # Draws a cost according to a log-normal distribution (always positive, skewed, can simulate an occasionally very large loss)
     return random.lognormvariate(mu, sigma)
  
  
 def cost_sim(mu, sigma):
+    mu = log(avg_cost) - sigma**2 / 2 # as we know : E(X) = exp(mu + sigma² / 2)
+
     return lognormal(mu, sigma) # simulate the cost of a sinister
+
