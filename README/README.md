@@ -174,7 +174,6 @@ After running various simulations, users will be able to compare different scena
 
 We conclude by displaying the results with:
 - Average Loss
-- Variance
 - VaR 99%
 - Expected Shortfall
 - Probability of Ruin

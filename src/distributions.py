@@ -1,7 +1,5 @@
-from math import exp, factorial 
+from math import exp, factorial, log
 import random
-
-cumul = 0
 
 def poisson(k, landa) :
     return (landa**k * exp(-landa)) / factorial(k) # P(N = k)
@@ -28,7 +26,7 @@ def lognormal(mu, sigma):
  
  
 def cost_sim(mu, sigma):
-    mu = log(avg_cost) - sigma**2 / 2 # as we know : E(X) = exp(mu + sigma² / 2)
+    mu = log(mu) - sigma**2 / 2 # as we know : E(X) = exp(mu + sigma² / 2)
 
     return lognormal(mu, sigma) # simulate the cost of a sinister
 
