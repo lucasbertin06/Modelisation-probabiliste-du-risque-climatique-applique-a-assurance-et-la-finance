@@ -20,5 +20,5 @@ def ruin_prob(losses, capital) : # this function is to estimate that the capital
     return n_ruin / len(losses)    
 
 def recommended_capital(losses, prob=0.99, margin=0.05) :
-    capital = expected_shortfall(losses, prob)
+    capital = expected_Shortfall(losses, prob)
     return capital * (1 + margin) # Now, we estimate the minimum amount to have with the expected Shortfall, and we add 5% of this amount to be sure to have enough, in case of possible variation
