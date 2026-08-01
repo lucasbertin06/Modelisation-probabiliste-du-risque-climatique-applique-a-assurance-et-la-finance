@@ -22,7 +22,7 @@ SCENARIOS = [CURRENT, MODERATE, EXTREME]
 
 def apply_scenario(risk, scenario):
     new_risk = risk.copy() # we copy the dictionnary
-    new_risk["frequency"] *= scenario["frequency"] # then multiply by the frequency and severity from above
+    new_risk["frequence"] *= scenario["frequency"] # then multiply by the frequency and severity from above
     new_risk["avg_cost"] *= scenario["severity"]
 
     return new_risk
