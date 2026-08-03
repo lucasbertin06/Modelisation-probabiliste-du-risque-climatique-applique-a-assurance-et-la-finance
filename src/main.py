@@ -29,7 +29,7 @@ def apply_scenario_all(risks, scenario) :
 def run(hazard_name, scenario_name, years, capital):
     risks = choose_hazard(hazard_name)
     scenario = choose_scenario(scenario_name)
-    adjusted_risks = apply_scenario_to_all(risks, scenario)
+    adjusted_risks = apply_scenario_all(risks, scenario)
  
     losses = simulation(adjusted_risks, years=years)
  
