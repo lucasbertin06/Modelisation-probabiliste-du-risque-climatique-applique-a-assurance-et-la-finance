@@ -43,12 +43,12 @@ def run(hazard_name, scenario_name, years, capital):
     print(f"Hazard(s): {hazard_name}")
     print(f"Scenario: {scenario['name']}")
     print(f"Simulated years: {years}")
-    print(f"Average loss: {avg_loss:.2f}")
-    print(f"Variance: {variance:.2f}")
-    print(f"VaR 99%: {var_99:.2f}")
-    print(f"Expected Shortfall 99%: {es_99:.2f}")
-    print(f"Ruin probability (capital={capital}): {ruin:.4f}")
-    print(f"Recommended capital: {capital_reco:.2f}")
+    print(f"Average loss: {avg_loss :.2f}")
+    print(f"Variance: {variance :.2f}")
+    print(f"VaR 99%: {var_99 :.2f}")
+    print(f"Expected Shortfall 99%: {es_99 :.2f}")
+    print(f"Ruin probability (capital={capital}): {ruin :.4f}")
+    print(f"Recommended capital: {capital_reco :.2f}")
     print()
  
     return losses
@@ -57,7 +57,7 @@ def run(hazard_name, scenario_name, years, capital):
 def compare_scenarios(hazard_name="all", years=1000, capital=100000):
     # README asks the user to compare different scenarios against each other
     for scenario in SCENARIOS:
-        run(hazard_name=hazard_name, scenario_name=scenario["name"], years=years, capital=capital)
+        run(hazard_name = hazard_name, scenario_name = scenario["name"], years = years, capital = capital)
  
  
 def ask_hazard():
