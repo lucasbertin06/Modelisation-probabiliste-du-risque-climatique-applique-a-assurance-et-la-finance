@@ -40,6 +40,7 @@ def run(hazard_name, scenario_name, years, capital):
     ruin = ruin_prob(losses, capital)
     capital_reco = recommended_capital(losses, 0.99)
  
+    print()
     print(f"Hazard(s): {hazard_name}")
     print(f"Scenario: {scenario['name']}")
     print(f"Simulated years: {years}")
