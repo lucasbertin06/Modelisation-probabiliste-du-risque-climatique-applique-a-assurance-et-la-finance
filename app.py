@@ -15,8 +15,149 @@ from insurance import VaR, expected_Shortfall, ruin_prob, recommended_capital
 
 st.set_page_config(page_title="ClimateRiskSim", page_icon="🌊", layout="wide")
 
+# ---------- esthétique : palette storm / teal / amber, Fraunces + IBM Plex Mono ----------
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+    --bg-void:#0c1218;
+    --bg-panel:#141b23;
+    --bg-panel-2:#1a232d;
+    --line:#25313d;
+    --text-primary:#eef2f5;
+    --text-muted:#8b98a8;
+    --text-dim:#5c6a7a;
+    --safe:#4fb6a6;
+    --danger:#e2703a;
+    --danger-bright:#ef8a58;
+}
+
+html, body, [class*="css"]{
+    font-family:'Inter', sans-serif;
+    color:var(--text-primary);
+}
+
+.stApp{
+    background:var(--bg-void);
+    background-image:
+        radial-gradient(ellipse 900px 500px at 15% -10%, rgba(79,182,166,0.08), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 100% 10%, rgba(226,112,58,0.07), transparent 60%);
+}
+
+/* titre */
+h1{
+    font-family:'Fraunces', serif !important;
+    font-weight:500 !important;
+    letter-spacing:-0.01em;
+    color:var(--text-primary) !important;
+}
+.stCaption, [data-testid="stCaptionContainer"]{
+    font-family:'IBM Plex Mono', monospace !important;
+    color:var(--safe) !important;
+    font-size:12.5px !important;
+    letter-spacing:0.04em;
+}
+
+/* sidebar */
+[data-testid="stSidebar"]{
+    background:var(--bg-panel) !important;
+    border-right:1px solid var(--line);
+}
+[data-testid="stSidebar"] h2, [data-testid="stSidebar"] label{
+    font-family:'IBM Plex Mono', monospace !important;
+    color:var(--text-muted) !important;
+    text-transform:uppercase;
+    font-size:11.5px !important;
+    letter-spacing:0.06em;
+}
+
+/* inputs */
+[data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] > div,
+[data-testid="stSidebar"] input{
+    background:var(--bg-panel-2) !important;
+    border:1px solid var(--line) !important;
+    color:var(--text-primary) !important;
+    font-family:'IBM Plex Mono', monospace !important;
+}
+[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] > div > div{
+    background:var(--safe) !important;
+}
+
+/* boutons */
+[data-testid="stSidebar"] button{
+    font-family:'IBM Plex Mono', monospace !important;
+    font-size:12.5px !important;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    border-radius:7px !important;
+}
+[data-testid="stSidebar"] button[kind="primary"]{
+    background:var(--safe) !important;
+    color:#08221d !important;
+    border:none !important;
+    font-weight:600 !important;
+}
+[data-testid="stSidebar"] button[kind="secondary"]{
+    background:transparent !important;
+    color:var(--text-muted) !important;
+    border:1px solid var(--line) !important;
+}
+[data-testid="stSidebar"] button[kind="secondary"]:hover{
+    border-color:var(--danger) !important;
+    color:var(--danger-bright) !important;
+}
+
+/* metric cards */
+[data-testid="stMetric"]{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+}
+[data-testid="stMetricLabel"]{
+    font-family:'IBM Plex Mono', monospace !important;
+    text-transform:uppercase;
+    font-size:10.5px !important;
+    letter-spacing:0.07em;
+    color:var(--text-dim) !important;
+}
+[data-testid="stMetricValue"]{
+    font-family:'IBM Plex Mono', monospace !important;
+    color:var(--text-primary) !important;
+}
+
+/* le tout premier metric (probabilité de ruine) en hero */
+[data-testid="column"]:first-of-type [data-testid="stMetricValue"]{
+    font-family:'Fraunces', serif !important;
+    font-size:52px !important;
+}
+
+/* table de comparaison */
+[data-testid="stTable"], .stDataFrame{
+    font-family:'IBM Plex Mono', monospace !important;
+}
+[data-testid="stTable"] table{
+    background:var(--bg-panel) !important;
+    border:1px solid var(--line) !important;
+}
+[data-testid="stTable"] th{
+    color:var(--text-dim) !important;
+    text-transform:uppercase;
+    font-size:10.5px !important;
+    letter-spacing:0.06em;
+    border-bottom:1px solid var(--line) !important;
+}
+[data-testid="stTable"] td{
+    border-bottom:1px solid var(--line) !important;
+}
+
+hr{border-color:var(--line) !important;}
+</style>
+""", unsafe_allow_html=True)
+
 st.title("ClimateRiskSim")
-st.caption("Simulation Monte-Carlo du risque climatique assurantiel — modèle de risque collectif (CRM)")
+st.caption("MODÈLE DE RISQUE COLLECTIF · SIMULATION MONTE-CARLO")
 
 # ---------- sidebar : paramètres ----------
 st.sidebar.header("Paramètres")
@@ -86,10 +227,14 @@ def render_histogram(losses, capital, var99) :
                   annotation_text="VaR 99%", annotation_position="bottom")
     fig.update_layout(
         template="plotly_dark",
+        paper_bgcolor="#141b23",
+        plot_bgcolor="#141b23",
+        font=dict(family="IBM Plex Mono, monospace", color="#8b98a8", size=11),
         height=380,
         margin=dict(l=10, r=10, t=30, b=10),
         xaxis_title="Perte annuelle (€)",
         yaxis_title="Nombre d'années simulées",
+        bargap=0.05,
     )
     st.plotly_chart(fig, use_container_width=True)
 
