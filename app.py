@@ -151,8 +151,17 @@ h1{
 [data-testid="stTable"] td{
     border-bottom:1px solid var(--line) !important;
 }
-
-hr{border-color:var(--line) !important;}
+hr{border-color:var(--line) !important;
+}
+[data-testid="stHeader"]{
+    display:none;
+}
+[data-testid="stToolbar"]{
+    display:none;
+}
+[data-testid="stDecoration"]{
+    display:none;
+}
 </style>
 """, unsafe_allow_html=True)
 
