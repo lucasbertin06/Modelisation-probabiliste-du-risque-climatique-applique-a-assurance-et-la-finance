@@ -34,45 +34,45 @@ run_clicked = st.sidebar.button("Lancer la simulation", type="primary")
 compare_clicked = st.sidebar.button("Comparer les 3 scénarios")
 
 
-def choose_hazard(name):
-    if name == "all":
+def choose_hazard(name) :
+    if name == "all" :
         return HAZARDS
-    for h in HAZARDS:
-        if h["name"] == name:
+    for h in HAZARDS :
+        if h["name"] == name :
             return [h]
     raise ValueError(f"Unknown hazard : {name}")
 
 
-def choose_scenario(name):
+def choose_scenario(name) :
     for s in SCENARIOS:
-        if s["name"] == name:
+        if s["name"] == name :
             return s
     raise ValueError(f"Unknown scenario : {name}")
 
 
-def run_model(hazard_name, scenario_name, years, capital):
+def run_model(hazard_name, scenario_name, years, capital) :
     risks = choose_hazard(hazard_name)
     scenario = choose_scenario(scenario_name)
     adjusted_risks = [apply_scenario(r, scenario) for r in risks]  # applique le scénario à CHAQUE aléa sélectionné
 
-    losses = simulation(adjusted_risks, years=years)
+    losses = simulation(adjusted_risks, years = years)
 
     return {
-        "losses": losses,
-        "avg": statistics.mean(losses),
-        "variance": statistics.variance(losses),
-        "var99": VaR(losses, 0.99),
-        "es99": expected_Shortfall(losses, 0.99),
-        "ruin": ruin_prob(losses, capital),
-        "cap_reco": recommended_capital(losses, 0.99),
+        "losses" : losses,
+        "avg" : statistics.mean(losses),
+        "variance" : statistics.variance(losses),
+        "var99" : VaR(losses, 0.99),
+        "es99" : expected_Shortfall(losses, 0.99),
+        "ruin" : ruin_prob(losses, capital),
+        "cap_reco" : recommended_capital(losses, 0.99),
     }
 
 
-def eur(x):
+def eur(x) :
     return f"{x:,.0f} €".replace(",", " ")
 
 
-def render_histogram(losses, capital, var99):
+def render_histogram(losses, capital, var99) :
     fig = go.Figure()
     fig.add_trace(go.Histogram(
         x=losses,
@@ -109,7 +109,7 @@ def render_result(res, capital):
 
 
 # ---------- run ----------
-if compare_clicked:
+if compare_clicked :
     st.subheader(f"Comparaison des scénarios — aléa : {hazard_name}")
     rows = []
     for s in SCENARIOS:
@@ -123,7 +123,7 @@ if compare_clicked:
             "Capital recommandé": eur(res["cap_reco"]),
         })
     st.table(rows)
-else:
+else :
     res = run_model(hazard_name, scenario_name, years, capital)
     render_result(res, capital)
 
